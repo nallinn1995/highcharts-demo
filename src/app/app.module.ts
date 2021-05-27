@@ -3,6 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ChartModule, HIGHCHARTS_MODULES  } from 'angular-highcharts';
+import * as more from 'highcharts/highcharts-more.src';
+import * as highmaps from 'highcharts/modules/map.src';
+import * as  exporting from 'highcharts/modules/exporting.src';
+
+
 
 @NgModule({
   declarations: [
@@ -10,9 +16,13 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartModule
   ],
-  providers: [],
+  providers: [
+    { provide: HIGHCHARTS_MODULES, useFactory: () => [ more, highmaps,exporting  ] } // add as factory to your providers
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
